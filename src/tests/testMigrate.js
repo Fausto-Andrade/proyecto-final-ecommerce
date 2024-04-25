@@ -1,6 +1,7 @@
 const sequelize = require('../utils/connection');
 const userCreate = require('./userCreate');
 require('../models')
+
 const testMigrate = async () => {
   try {
     await sequelize.sync({ force: true })
