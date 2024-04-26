@@ -9,8 +9,8 @@ let categoryId
 //hook de inicio de sesion
 beforeAll(async () => {
   const user = {
-    email: "yoneison@gmail.com",
-    password: "yoneison1234"
+      email:"john.doe@gmail.com", 
+      password: "password123" 
   }
 
   const res = await request(app)
