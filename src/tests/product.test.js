@@ -1,7 +1,8 @@
 require("../models")
 const Category = require("../models/Category");
 const request = require("supertest")
-const app = require('../app')
+const app = require('../app');
+const ProductImg = require("../models/ProductImg");
 const URL_BASE = '/api/v1/products';
 
 let category
@@ -84,6 +85,20 @@ test("PUT -> URL_BASE, should return statusCode 200, and res.body.title === body
     expect(res.statusCode).toBe(200)
     expect(res.body).toBeDefined()
     expect(res.body.title).toBe(bodyUpdate.title)
+})
+
+test("POST -> 'URL_BASE/:id/images' should return statusCode 200, and res.body.length === 1", async () =>{
+    const imageBody = {
+        url: 'lorem40',
+        filename: 'lorem10'
+    } 
+
+    image = await ProductImg.create(imageBody);
+
+    const res = await request(app)
+        .post(`${URL_BASE}/${productId}/images`)
+        .send([image.id])
+        .set('Authorization', `Bearer ${TOKEN}`)
 })
 
 
